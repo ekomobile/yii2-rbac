@@ -28,6 +28,38 @@ use yii\rbac\Rule;
 class Migration extends Component implements MigrationInterface
 {
     /**
+     * @var Connection|array|string the DB connection object or the application component ID of the DB connection
+     * that this migration should work with. Starting from version 2.0.2, this can also be a configuration array
+     * for creating the object.
+     *
+     * Note that when a Migration object is created by the `migrate` command, this property will be overwritten
+     * by the command. If you do not want to use the DB connection provided by the command, you may override
+     * the [[init()]] method like the following:
+     *
+     * ```php
+     * public function init()
+     * {
+     *     $this->db = 'db2';
+     *     parent::init();
+     * }
+     * ```
+     */
+    public $db = 'db';
+    /**
+     * @var int max number of characters of the SQL outputted. Useful for reduction of long statements and making
+     * console output more compact.
+     * @since 2.0.13
+     */
+    public $maxSqlOutputLength;
+    /**
+     * @var bool indicates whether the console output should be compacted.
+     * If this is set to true, the individual commands ran within the migration will not be output to the console.
+     * Default is false, in other words the output is fully verbose by default.
+     * @since 2.0.13
+     */
+    public $compact = false;
+
+    /**
      * @var string|DbManager The auth manager component ID that this migration should work with.
      */
     public $authManager = 'authManager';
